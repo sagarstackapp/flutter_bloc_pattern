@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern/model/posts_model.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class PostApi {
@@ -14,15 +13,12 @@ class PostApi {
       http.Response response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         if (response.body != null) {
-          Get.snackbar('${response.statusCode}', 'Get response successfully.!', colorText: Colors.white, backgroundColor: Colors.green);
           return postsModelFromJson(response.body);
         } else {
-          Get.snackbar('${response.statusCode}', 'Get response not fetched.!', colorText: Colors.white, backgroundColor: Colors.red);
           return null;
         }
       } else {
         print('Status Code --> ${response.statusCode}');
-        Get.snackbar('${response.statusCode}', 'Something went wrong', colorText: Colors.white, backgroundColor: Colors.red);
         return null;
       }
     } catch (e) {

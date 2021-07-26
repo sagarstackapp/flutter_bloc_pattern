@@ -52,7 +52,7 @@ class HomePageState extends State<HomePage> {
                     controller: scrollController,
                     itemBuilder: (context, index) => index >= state.postsLists.length ? LoadingPage() : Text('${state.postsLists[index].title}'),
                     separatorBuilder: (context, index) => Divider(thickness: 2, color: Colors.grey),
-                    itemCount: state.postsLists.length,
+                    itemCount: state.hasReachedMax ? state.postsLists.length : state.postsLists.length + 1,
                   );
                 default:
                   return Center(child: CircularProgressIndicator());
